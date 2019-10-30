@@ -1,0 +1,6 @@
+[Página principal de Google](https://www.google.com/)
+[LMS Laboratoria](https://lms.laboratoria.la/cohorts/cdmx-2019-06-bc-core-cdmx-008/courses/javascript/08-async/05-promises)
+[HEP Data](https://www.hepdata.net/)
+[Developer Google](https://developers.google.com/web/fundamentals/primers/promises)
+[Amazon Hackaton](https://hackathon.talent-network.org/alexa-educacion-de-calidad/)
+[LinkendIn Brenda](https://www.linkedin.com/in/unavailable/)
