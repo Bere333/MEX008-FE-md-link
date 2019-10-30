@@ -3,25 +3,39 @@ const fs = require('fs');
 // const readfile = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/readfile.js');
 const geturls = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/gethtml.js')
             const geturl = new Promise((resolve, reject) => {
-              fs.readFile(process.argv[2], (err, data) => {
-                let urls = [];
-                urls =  geturls(err, data)
-                resolve(urls)
+              if (geturls != null) {
+                fs.readFile(process.argv[2], (err, data) => {
+                  let urls = [];
+                  urls =  geturls(err, data)
+                  const urlsM = urls.map((x)=>{
+                            return x.href
+                    
+                  })
+                  resolve(urlsM);
+
+                })
+              }else{
+
                 reject(err)
-            })
+              }
+                
             })
           
 
-          geturl.then(urls => {
-           const urlsM = urls.map((x)=>{
-             
-             return x.href
-           })
-           console.log(urlsM);
-           
-           
+          geturl.then(urls => { return new Promise((resolve, reject) => {
+            urls.map((x)=>{
+
+              https.get(x, (res) => {
+                          const { statusCode } = res;
+                          
+                            if (statusCode == 200) {
+                              return`${x} ok ${statusCode}`
+                            }
+            })
+            })
             
           })
+        })
           .catch(console.log('hay un error'))
           
 
