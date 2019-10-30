@@ -11,7 +11,7 @@ const geturls = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-m
                  let urls = [];
                  urls =  geturls(err, data)
                  const urlsM = urls.map((x)=>{
-                     return `${x.file} ${ x.href}  ${ x.text}`;
+                     return `${x.file} ${x.href}  ${x.text}`;
                  })
                  resolve(urlsM) 
                 })
