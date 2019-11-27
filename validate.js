@@ -1,42 +1,106 @@
 const https = require('https');
 const fs = require('fs');
-// const readfile = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/readfile.js');
-const geturls = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/gethtml.js')
-            const geturl = new Promise((resolve, reject) => {
-              if (geturls != null) {
-                fs.readFile(process.argv[2], (err, data) => {
-                  let urls = [];
-                  urls =  geturls(err, data)
-                  const urlsM = urls.map((x)=>{
-                            return x.href
-                    
-                  })
-                  resolve(urlsM);
+// const readfile = require('./utils/readfile');
+const geturls = require('./utils/geturls')
 
-                })
-              }else{
-
-                reject(err)
-              }
-                
-            })
           
 
-          geturl.then(urls => { return new Promise((resolve, reject) => {
-            urls.map((x)=>{
+            const geturl= ()=>{
+              return new Promise((resolve, reject) => {
+                
+                
+                
+                  fs.readFile(process.argv[2], (err, data) => {
 
-              https.get(x, (res) => {
-                          const { statusCode } = res;
-                          
-                            if (statusCode == 200) {
-                              return`${x} ok ${statusCode}`
-                            }
-            })
-            })
+                    if (err) {
+                      return reject(err)
+                    }else{
+                      let urls = [];
+                      urls =  geturls(err, data)
+                      const urlMap = urls.map((x) => {
+                        return x.href
+                      })
+                      return resolve(urlMap)
+                    }
+                      
+                      
+                      
+                     
+                      
+                     
+                      //   const urlsM = urls.map((x)=>{
+                      //     return x.href
+                        
+                      //   })
+                      //   // console.log(urlsM);
+                        
+                      //   return(urlsM);
+
+                  })
+                  
+                
+              
+                
+                
+                })
+              
+
+                
+      
+              
+              }
+              //  const arrayGetUrls = geturl()
+              // console.log(arrayGetUrls);
+              
+
+         
+          
+
+
+          // async function readLinks(){
+          //   const validateLinks = await geturl()
+          //   const arrayLinks = validateLinks.map(x=> {return x.href})
+          //   return(arrayLinks);
             
-          })
-        })
-          .catch(console.log('hay un error'))
+          // }
+
+          
+
+          // async function validate(){
+          //   const links = await readLinks()
+          //   const linksA = links.map((x)=>{
+          //     https.get(x, (res) => {
+          //             const { statusCode } = res;
+                      
+          //               if (statusCode == 200) {
+          //                 return(`${x} ok ${statusCode}`)
+          //               }
+          //             })
+
+          //   })
+          //           return(linksA)
+            
+          // }
+         
+          
+
+          // geturl.then(urls => { 
+          //   // urls.map((x)=>{
+
+          //   //   https.get(x, (res) => {
+          //   //     const { statusCode } = res;
+                
+          //   //       if (statusCode == 200) {
+          //   //         return`${x} ok ${statusCode}`
+          //   //       }
+          //   //     })
+          //   //   })
+          //   console.log(urls);
+            
+          
+            
+          // })
+          // .catch(console.log('hay un error'))
           
 
 
@@ -47,9 +111,7 @@ const geturls = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-m
             //   fs.readFile(process.argv[2], (err, data) => {
             //     let urls = [];
             //     urls =  geturls(err, data)
-            //     // const href =urls[20]
-            //     // href.map((x)=>{
-            //       //console.log(href.href);
+            //     
             //      const urlsM = urls.map((x)=>{
                   
             //         https.get(x.href, (res) => {
@@ -77,10 +139,10 @@ const geturls = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-m
              
             
             
-              const validate = Promise.all([geturl])
-              .then(results=>{console.log(results);
+              const validate = Promise.all([geturl()])
+              .then(results=>{return results
               })
-              .catch(console.log('No ha recibido arreglo'));
+              .catch(err=> {return err} );
 
                module.exports = validate;
             

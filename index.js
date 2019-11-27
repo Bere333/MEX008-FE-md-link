@@ -1,6 +1,6 @@
 // Módulos requeridos
 const validate = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/validate.js')
-const readfile = require('/home/berenice/Documentos/MEX008-FE-md-link/MEX008-FE-md-link/readfile.js')
+const readfile = require('./utils/readfile')
 
 
 const mdLinks = (path, options) => {
