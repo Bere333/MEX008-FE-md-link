@@ -7,9 +7,6 @@ const geturls = require('./utils/geturls')
 
             const geturl= ()=>{
               return new Promise((resolve, reject) => {
-                
-                
-                
                   fs.readFile(process.argv[2], (err, data) => {
 
                     if (err) {
@@ -22,37 +19,42 @@ const geturls = require('./utils/geturls')
                       })
                       return resolve(urlMap)
                     }
-                      
-                      
-                      
-                     
-                      
-                     
-                      //   const urlsM = urls.map((x)=>{
-                      //     return x.href
-                        
-                      //   })
-                      //   // console.log(urlsM);
-                        
-                      //   return(urlsM);
 
                   })
-                  
-                
-              
-                
                 
                 })
               
-
-                
-      
-              
               }
-              //  const arrayGetUrls = geturl()
+              // const arrayGetU = arrayGetUrls[0]
               // console.log(arrayGetUrls);
               
+              async function readLinks(){
+                const aurls = await geturl()
+                 const AurlsMap = () => {
+                  return new Promise((resolve, reject) => {
+                    for (let i = 0;i < aurls.length; i++) {
+                      //  urlsF.push(aurls[i])
+                      
+                      https.get(aurls[i], (res) => {
+                        let urlsF = []
+                        const { statusCode } = res;
+                          
+                            if (statusCode == 200) {
+                            return (`${aurls[i]} ok ${statusCode}`)
+                            }else{
+                              reject(`${aurls[i]} fail ${statusCode}`)
+                            }
+                            resolve(urlsF)
+                          })
+                         
+                     }
 
+                  })
+                 }
+                  
+                 
+                 return await AurlsMap()
+               }
          
           
 
@@ -139,7 +141,7 @@ const geturls = require('./utils/geturls')
              
             
             
-              const validate = Promise.all([geturl()])
+              const validate = Promise.all([readLinks()])
               .then(results=>{return results
               })
               .catch(err=> {return err} );
